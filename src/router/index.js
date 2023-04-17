@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import ProductView from '../views/ProductView.vue'
 import SingleProductView from '../views/SingleProductView.vue'
+import CartView from '../views/CartView.vue'
 
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/product/:id',
       name: 'SingleProduct',
       component: SingleProductView,
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: CartView,
     },
   ]
 })
