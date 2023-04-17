@@ -1,19 +1,22 @@
 <template>
   <div>
     <h1>Liste des produits</h1>
-    <div class="product-list">
-      <div v-for="product in productList" :key="product.id" class="product">
-        <img :src="product.image" alt="Product Image" class="product-image">
-        <div class="product-details">
-          <h2 class="product-title">{{ product.title }}</h2>
-          <p class="product-price">Prix : {{ product.price }} €</p>
-          <button class="product-button" @click="getProduct(product.id)">Voir le produit</button>
-          <p>{{ product.id }}</p>
+    <div class="row">
+      <div v-for="product in productList" :key="product.id" class="col-md-4">
+        <div class="card">
+          <img :src="product.image" alt="Product Image" class="card-img-top">
+          <div class="card-body">
+            <h2 class="card-title">{{ product.title }}</h2>
+            <!-- <p class="card-text">{{ product.description }}</p> -->
+            <p class="card-text">Prix : {{ product.price }} €</p>
+            <button class="btn btn-primary" @click="getProduct(product.id)">Voir le produit</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 
 <script>
