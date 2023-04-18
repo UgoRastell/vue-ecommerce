@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
 import ProductView from '../views/ProductView.vue'
 import SingleProductView from '../views/SingleProductView.vue'
 import CartView from '../views/CartView.vue'
@@ -12,27 +11,35 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: LoginView
+      component: HomeView,
+      meta: {
+        showNavbar: true,
+        showFooter: true
+      }
     },
     {
       path: '/store',
       name: 'store',
-      component: ProductView
+      component: ProductView,
+      meta: {
+        showNavbar: true,
+        showFooter: true
+      }
     },
     {
       path: '/product/:id',
       name: 'SingleProduct',
       component: SingleProductView,
+      showFooter: true
     },
     {
       path: '/cart',
       name: 'Cart',
       component: CartView,
+      meta: {
+        showNavbar: true,
+        showFooter: true
+      }
     },
   ]
 })

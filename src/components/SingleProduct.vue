@@ -1,16 +1,25 @@
 <template>
-  <div>
-    <h1>{{ product.title }}</h1>
-    <img :src="product.image" alt="Product Image" class="product-image">
-    <p>{{ product.description }}</p>
-    <p>Prix : {{ product.price }} €</p>
-    <button class="product-button" @click="addToCart()">Ajouter au panier</button>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img :src="product.image" alt="Product Image" class="img-fluid">
+      </div>
+      <div class="col-md-6">
+        <h1 class="mb-4">{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Prix : {{ product.price }} €</p>
+        <button class="btn btn-primary" @click="addToCart()">Ajouter au panier</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { useProductStore } from '@/stores/products'
 import { ref } from 'vue'
+import { useNotification } from '@kyvg/vue3-notification'
+
+const notification = useNotification()
 
 export default {
   name: 'SingleProduct',
@@ -40,6 +49,11 @@ export default {
       if (productIndex !== -1) {
         // Si le produit est déjà dans le panier, augmenter la quantité
         cart[productIndex].quantity++
+        notification.notify({
+          type: "success",
+          title: 'Produit ajouté au panier',
+          text: `Vous avez pris ${cart[productIndex].quantity} ${this.product.title} `,
+        });
       } else {
         // Sinon, ajouter le produit au panier avec une quantité de 1
         cart.push({
@@ -48,6 +62,12 @@ export default {
           title: this.product.title,
           price: this.product.price,
           quantity: 1,
+        })
+
+        notification.notify({
+          type: "success",
+          title: 'Produit ajouté au panier',
+          text: `${this.product.title} a été ajouté au panier.`,
         })
       }
 
